@@ -2,22 +2,29 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-
-   int[] nums = {2,7,11,15} ;
-    int[] out = new int[2] ;
-    int tar = 2 ;
-    for (int i = 0  ; i < nums.length ; i++ ) {
-        for (int j= i+1 ; j < nums.length ; j++ ) {
-            if(nums[i] +nums[j] == tar) {
-                out[0] = i ;
-                out[1] = j ;
-            }
-
-        }
+        boolean isHappy = isHappy(19) ;
+        System.out.print(isHappy);
 
 
     }
-    System.out.println(Arrays.toString(out));
+    static boolean isHappy(int n)
+    {
+        int l=0,sum=0;
+        while(n>0)
+        {
+            l=n%10;
+            sum=sum+(l*l);
+            n=n/10;
+        }
+        if (sum==1)
+            return true;
+        else if(sum==7) //only one happy number(7) b/w 1 and 10
+            return true;
+        else if(sum<10)
+            return false;
+        else
+            return isHappy(sum);
+
 
     }
 }
