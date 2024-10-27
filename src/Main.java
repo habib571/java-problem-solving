@@ -1,26 +1,33 @@
 import java.math.BigInteger;
 import java.util.Arrays;
-
+import java.util.Stack;
 public class Main {
     public static void main(String[] args) {
 
 
 }
-    public ListNode removeElements(ListNode head, int val) {
-        while (head != null && head.val == val) {
-            head = head.next;
+    public boolean isPalindrome(ListNode head) {
+        Stack<Integer> stk= new Stack<>();
+        ListNode curr = head ;
+        while (curr!= null) {
+             stk.push(curr.val) ;
+            curr = curr.next;
         }
-
-        ListNode curr = head;
-        while (curr != null && curr.next != null) {
-            if (curr.next.val == val) {
-                curr.next = curr.next.next;
-            } else {
-                curr = curr.next;
+        curr = head ;
+        while (!stk.isEmpty()) {
+            if(curr.val != stk.peek())   {
+                 return  false ;
             }
-        }
+            else {
+                stk.pop() ;
+                curr =curr.next ;
 
-        return head;
+            }
+
+
+        }
+    return  true ;
     }
+
 }
 
